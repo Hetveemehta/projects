@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Great+Vibes&display=swap');
+
+:root {
+    --dark-blue: #0d1117;
+    --beige: #d5c6a1;
+    --cream: #f4ede0;
+}
+
+/* GLOBAL */
+body {
+    margin: 0;
+    color: var(--beige);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-blue);
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* ---------- LANDING PAGE ---------- */
+.logo {
+    font-size: 3rem;
+    margin-top: 4rem;
+}
+
+.logo span {
+    font-family: 'Great Vibes', cursive;
+    color: var(--cream);
+}
+
+.photo-preview {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.photo-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.photo-strip {
+    width: 130px;
+    height: 380px;
+    object-fit: cover;
+    border: 4px solid var(--beige);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s ease;
+}
+
+.photo-strip.left {
+    transform: rotate(-6deg);
+}
+
+.photo-strip.right {
+    transform: rotate(6deg);
+}
+
+.photo-area:hover .photo-strip.left {
+    transform: rotate(-4deg) scale(1.05);
+}
+
+.photo-area:hover .photo-strip.right {
+    transform: rotate(4deg) scale(1.05);
+}
+
+.photo-area:hover {
+    transform: scale(1.05);
+}
+
+.photo-area.zoom-out {
+    transform: scale(1.2) rotate(-2deg);
+    filter: brightness(1.2);
+}
+
+.photo-text {
+    color: var(--beige);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+
+    0%,
+    18%,
+    20%,
+    22%,
+    25%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    19%,
+    21%,
+    23%,
+    24%,
+    55% {
+        opacity: 0.6;
+    }
+}
+
+/* ---------- BOOTH PAGE ---------- */
+.booth-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 2.5rem;
+}
+
+.main-title span {
+    font-family: 'Great Vibes', cursive;
+    color: var(--cream);
+}
+
+.booth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 2rem;
+}
+
+.video-box {
+    position: relative;
+    background: #111;
+    border: 5px solid var(--beige);
+    border-radius: 20px;
+    width: 850px;
+    height: 550px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(213, 198, 161, 0.15);
+}
+
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+.countdown {
+    position: absolute;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--cream);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 20px rgba(213, 198, 161, 0.7);
+}
+
+.shooting-text {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(213, 198, 161, 0.1);
+    color: var(--beige);
+    font-size: 1rem;
+    padding: 6px 14px;
+    border: 1px solid var(--beige);
+    border-radius: 6px;
+    display: none;
+}
+
+/* Vertical live strip */
+.live-strip {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    background: rgba(213, 198, 161, 0.08);
+    border: 3px solid var(--beige);
+    border-radius: 14px;
+    padding: 12px;
+    height: 520px;
+    width: 160px;
+}
+
+.strip-img {
+    width: 140px;
+    height: 100px;
+    border-radius: 8px;
+    border: 2px solid var(--beige);
+    object-fit: cover;
+    background: #222;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.strip-img.active {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--beige);
+    transform: scale(1.05);
+}
+
+/* ---------- RESULT PAGE ---------- */
+.result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0rem;
+}
+
+.strip-container.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 15px 50px 15px;
+    /* 👈 bigger bottom padding */
+    background: var(--beige);
+    border-radius: 14px;
+    margin: 0rem auto;
+    width: fit-content;
+    position: relative;
+    box-shadow: 0 0 25px rgba(213, 198, 161, 0.2);
+}
+
+.strip-container.vertical img {
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* watermark text at bottom (inside beige area) */
+.strip-container.vertical::after {
+    content: "GOTHAM";
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+   font-family: 'Great Vibes', cursive;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(13, 17, 23, 0.8);
+    text-transform: uppercase;
+    pointer-events: none;
+    text-shadow: 0 0 6px rgba(13, 17, 23, 0.4);
+
+}
+/* Button */
+button {
+    margin-top: 25px;
+    padding: 10px 25px;
+    border: 2px solid var(--beige);
+    background: transparent;
+    color: var(--beige);
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: var(--beige);
+    color: var(--dark-blue);
+}
+
+/* animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.strip-img.active {
+    animation: fadeIn 0.6s ease;
+}
+/* ===== GOTHAM BOOTH - EDITOR PAGE FINAL CLEAN CSS ===== */
+
+/* ===== Base ===== */
+:root {
+  --dark-blue: #0d1117;
+  --beige: #d5c6a1;
+  --pink: #e6b7c2;
+  --white: #ffffff;
+}
+
+body {
+  background-color: var(--dark-blue);
+  color: var(--beige);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== Editor Section ===== */
+.editor-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 40px 0;
+}
+span{
+    font-family: 'Great Vibes', cursive;
+        color: var(--cream);
+
+
+}
+/* ===== Photo Strip ===== */
+.editor-strip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 25px 20px 70px 20px; /* bottom thicker for watermark 😎 */
+  background: var(--beige);
+  border-radius: 14px;
+  width: fit-content;
+  box-shadow: 0 0 25px rgba(213, 198, 161, 0.25);
+  position: relative;
+  margin: 0 auto;
+}
+
+.editor-strip-container img {
+  width: 200px;
+  height: 150px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ===== Watermark ===== */
+.editor-watermark {
+  position: absolute;
+  bottom: 18px; /* no more cut off 🩵 */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  font-family: 'Great Vibes', cursive;
+  color: rgba(13, 17, 23, 0.8);
+  pointer-events: none;
+}
+
+/* ===== Tools Section ===== */
+.editor-tools {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+
+  flex-wrap: wrap;
+
+}
+
+.editor-tools-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* ===== Buttons ===== */
+.color-btn,
+.download-btn {
+  background: transparent;
+  border: 2px solid var(--beige);
+  color: var(--beige);
+  font-size: 1rem;
+  padding: 8px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.color-btn:hover,
+.download-btn:hover {
+  background: var(--beige);
+  color: var(--dark-blue);
+  transform: scale(1.05);
+}
+
+/* ===== Scroll Fix ===== */
+html,
+body {
+  overflow-y: auto;
+}
+
+/* ===== Responsive Fix ===== */
+@media (max-width: 600px) {
+  .editor-strip-container img {
+    width: 160px;
+    height: 120px;
+  }
+
+  .color-btn,
+  .download-btn {
+    font-size: 0.9rem;
+    padding: 6px 16px;
+  }
+}
