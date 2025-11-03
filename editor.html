@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GOTHAM BOOTH | Editor</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INDIGO PHOTOBOOTH | Editor</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="editor">
-  <header class="editor-header">
-    <h1>GOTHAM <span>Editor</span></h1>
-  </header>
+  <h1 class="main-title">INDIGO <span>Editor</span></h1>
 
-  <main class="editor-main">
-    <div class="editor-strip-container" id="editorStrip">
-      <!-- photos inserted via JS -->
-      <div class="editor-watermark">GOTHAM photobooth</div>
+  <div class="editor-wrapper">
+    <div class="strip-container">
+      <!-- editorStrip gets populated by script -->
+      <div class="photo-strip-vertical beige" id="editorStrip"></div>
     </div>
 
-    <div class="editor-tools-container">
-  <div class="editor-tools">
-    <button class="color-btn" onclick="changeEditorFrame('white')">White</button>
-    <button class="color-btn" onclick="changeEditorFrame('beige')">Beige</button>
-    <button class="color-btn" onclick="changeEditorFrame('pink')">Pink</button>
-    <button class="color-btn" onclick="changeEditorFrame('none')">None</button>
-    <button class="download-btn" onclick="downloadEditedStrip()">Download</button>
-  </div>
+    <div class="control-panel">
+      <h3>Edit</h3>
+      <hr class="divider">
+
+      <div class="filter-controls">
+        <button data-filter="none">Original</button>
+        <button data-filter="bw">B&amp;W</button>
+        <button data-filter="warm">Warm</button>
+        <button data-filter="cool">Cool</button>
+        <button data-filter="grain">Grain</button>
+      </div>
+
+      <div class="frame-controls">
+        <div class="color-picker">
+          <div class="color-dot beige" data-frame="beige" title="beige"></div>
+          <div class="color-dot indigo" data-frame="indigo" title="indigo"></div>
+          <div class="color-dot cream" data-frame="cream" title="cream"></div>
+          <div class="color-dot pink" data-frame="pink" title="pink"></div>
+          <div class="color-dot black" data-frame="black" title="black"></div>
+
+        </div>
+      </div>
+<div class="custom-bottom">
+  <p>Custom Text:</p>
+  <input type="text" id="bottomTextInput" placeholder="Type your caption..." maxlength="40">
+  <button id="applyBottomText">Apply ✨</button>
 </div>
 
+      <div class="download-section">
+</div>
 
     </div>
-  </main>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
