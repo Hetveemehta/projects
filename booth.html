@@ -3,33 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GOTHAM BOOTH | Camera</title>
+  <title>INDIGO PHOTOBOOTH | Camera</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="booth">
   <div class="booth-container">
-    <h1 class="main-title small">GOTHAM <span>photobooth</span></h1>
+    <h1 class="main-title small">INDIGO <span>photobooth</span></h1>
 
-    <!-- booth + live strip -->
     <div class="booth-wrapper" id="boothWrapper">
       <div class="video-box">
         <video id="video" autoplay playsinline></video>
         <div class="countdown" id="countdown"></div>
-        <div class="shooting-text" id="shootingText">Shooting in progress</div>
       </div>
 
-      <div class="live-strip" id="liveStrip">
-        <img class="strip-img" />
-        <img class="strip-img" />
-        <img class="strip-img" />
-        <img class="strip-img" />
-      </div>
+      <!-- dynamic mini strip -->
+      <div class="live-strip" id="liveStrip"></div>
     </div>
 
     <button id="startBtn">Start Capturing</button>
   </div>
 
+  <!-- overlay -->
+  <div class="overlay hidden" id="overlay">
+    <div class="overlay-content">
+      <h2 class="overlay-title">
+        INDIGO <span>photobooth</span> says you look amazing
+      </h2>
+      <p>Ready to continue?</p>
+      <div class="overlay-buttons">
+        <button id="retakeBtn">Retake</button>
+        <button id="continueBtn">Continue➜</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
