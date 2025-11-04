@@ -121,7 +121,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .main-title {
@@ -134,12 +134,17 @@ body {
     color: var(--cream);
 }
 
-.booth-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 80px;
+.booth-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:60px;
+  position:relative;
 }
+
+
+
 
 .video-box {
     position: relative;
@@ -150,6 +155,8 @@ body {
     height: 550px;
     overflow: hidden;
     box-shadow: 0 0 40px rgba(213, 198, 161, 0.15);
+        margin-left: 200px;
+
 }
 
 .video-box video {
@@ -171,19 +178,18 @@ body {
 
 /* live strip thumbnails (right side) */
 .live-strip {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 14px;
-    min-height: 550px;
-    width: 150px;
-    overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 150px;
+  min-height: 550px;
+  transition: opacity .35s ease, transform .35s ease;
 }
 
 /* small wrapper for gradient border effect */
 .live-strip .thumb-wrap {
-    width: 124px;
+    width: 145px;
     padding: 3px;
     border-radius: 12px;
     background: linear-gradient(135deg, var(--beige), var(--indigo));
@@ -192,13 +198,20 @@ body {
 
 .live-strip img {
     display: block;
-    width: 120px;
-    height: 90px;
+    width: 140px;
+    height: 120px;
     border-radius: 8px;
     object-fit: cover;
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.35s ease;
+}
+/* strip starts invisible but space is kept */
+.hidden-strip {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(30px);
+  pointer-events: none;
 }
 
 .live-strip img.visible {
@@ -300,17 +313,7 @@ button:hover {
     }
 }
 
-@keyframes glowPulse {
 
-    0%,
-    100% {
-        text-shadow: 0 0 10px var(--beige), 0 0 20px var(--indigo);
-    }
-
-    50% {
-        text-shadow: 0 0 25px var(--cream), 0 0 35px var(--indigo);
-    }
-}
 
 /* ---------- EDITOR PAGE + PANEL ---------- */
 .editor-wrapper {
@@ -341,7 +344,6 @@ button:hover {
   box-shadow: 0 0 25px rgba(60, 76, 123, 0.3); /* soft indigo glow */
   width: 200px;
   height: 600px;
-
   gap: 6px;
   position: relative;
   margin-top: 20px;
@@ -384,7 +386,7 @@ button:hover {
     display: block;
     width: 100%;
     text-align: center;
-    font-size: 1rem;
+    font-size: 2rem;
     font-family: 'Great Vibes', cursive;
     color: var(--cream);
     padding: 12px 0;
@@ -508,7 +510,7 @@ button:hover {
 }
 #downloadStripBtn {
   background: var(--indigo);
-  border: 2px solid var(--beige);
+  border: 1px solid rgba(213, 198, 161, 0.3);
   color: var(--cream);
   font-weight: 500;
   padding: 8px 10px;
@@ -521,7 +523,6 @@ button:hover {
 #downloadStripBtn:hover {
   background: var(--beige);
   color: var(--dark-blue);
-  box-shadow: 0 0 10px rgba(213,198,161,0.4);
 }
 .divider {
   width: 80%;
@@ -539,33 +540,173 @@ button:hover {
 }
 
 #bottomTextInput {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--indigo);
   border: 1px solid rgba(213, 198, 161, 0.3);
   border-radius: 8px;
   padding: 6px 10px;
-  color: var(--beige);
+  color: var(--cream);
   font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
   width: 90%;
   text-align: center;
 }
 
-#bottomTextInput::placeholder {
-  color: rgba(213, 198, 161, 0.5);
+#bottomTextInput {
+  color: var(--cream);
 }
 
-#applyBottomText {
-  background: transparent;
-  border: 1px solid rgba(213, 198, 161, 0.25);
-  color: var(--beige);
+
+.custom-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.bottom-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+#applyBottomText,
+#removeBottomText {
+  border: 1px solid rgba(213,198,161,0.3);
+  color: var(--cream);
+  font-weight: 600;
+  padding: 7px 14px;
   border-radius: 8px;
-  padding: 6px 10px;
   cursor: pointer;
   transition: 0.3s ease;
   font-size: 0.85rem;
 }
 
+#applyBottomText {
+  background: var(--indigo);
+}
+
 #applyBottomText:hover {
   background: var(--beige);
   color: var(--dark-blue);
+}
+
+#removeBottomText {
+  background: var(--indigo);
+}
+
+#removeBottomText:hover {
+  background: var(--beige);
+  color: var(--dark-blue);
+}
+
+
+/* ====== PHONE LAYOUT ====== */
+@media (max-width: 600px) {
+  body, html { overflow: hidden; }
+
+  .main-title { font-size: 1.7rem; }
+
+  /* Camera = full width with aspect ratio */
+  .video-box {
+    width: 92vw;
+    aspect-ratio: 16 / 9; /* keeps height perfect */
+    height: auto;
+    margin-left: 0; /* remove desktop offset */
+  }
+  .video-box video { transform: scaleX(-1); width:100%; height:100%; object-fit: cover; }
+
+  /* Keep the booth centered; ignore right gap on phone */
+  .booth-wrapper {
+    gap: 0;
+  }
+
+  /* Live strip becomes an overlay that SLIDES over the right edge of the camera */
+  .live-strip {
+    position: absolute;
+    top: 50%;
+    right: 4vw;                 /* sit near right edge of camera */
+    transform: translateY(-50%) translateX(110%); /* hidden off-canvas by default */
+    width: 34vw;                /* overlay width on phone */
+    min-height: auto;
+    max-height: 70vh;
+    padding: 8px 4px;
+    border-radius: 12px;
+    background: rgba(13,17,23,0.65);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    visibility: visible;        /* overlay visibility managed by open class */
+    opacity: 0;
+    pointer-events: none;
+  }
+  .live-strip.open {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* ensure hidden-strip doesn't kill overlay on phone */
+  .hidden-strip { visibility: visible; } /* keep space logic for desktop only */
+
+  .live-strip .thumb-wrap { width: 30vw; padding: 3px; }
+  .live-strip img { width: 29vw; height: 22vw; border-radius: 8px; }
+
+  /* Toggle (FAB) button on the camera */
+  .strip-toggle{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 36px;
+    min-width: 36px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.45);
+    color: var(--cream);
+    border: 1px solid rgba(213,198,161,0.35);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    font-size: 0.9rem;
+  }
+  .strip-toggle:active{ transform: scale(0.98); }
+
+  /* Start button snug below */
+  button#startBtn {
+    margin-top: 10px;
+    padding: 9px 18px;
+    font-size: .95rem;
+  }
+}
+
+/* ====== EDITOR: PHONE SIDE-BY-SIDE ====== */
+@media (max-width: 600px) {
+  .editor-wrapper{
+    height: calc(100vh - 110px);
+    gap: 10px;
+    padding: 0 10px;
+    justify-content: space-between;
+  }
+  .strip-container{
+    width: 46vw;
+    height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .photo-strip-vertical{
+    width: 40vw;
+    height: 78vh;            /* keep it tall but within screen */
+    padding: 10px 6px 44px;  /* smaller permanent bottom */
+    gap: 6px;
+  }
+  .photo-strip-vertical img{
+    width: calc(40vw - 20px);
+    height: calc((78vh - 44px - 3*6px) / 4); /* 4 stacked images */
+  }
+
+  .control-panel{
+    min-width: 50vw;
+    width: 50vw;
+    padding: 12px;
+    gap: 10px;
+  }
+  .control-panel button{ padding:6px 8px; font-size:.8rem; }
+  .color-dot{ width:18px; height:18px; }
+  #bottomTextInput{ width:100%; font-size:.85rem; }
 }
