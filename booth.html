@@ -11,14 +11,17 @@
     <h1 class="main-title small">INDIGO <span>photobooth</span></h1>
 
     <div class="booth-wrapper" id="boothWrapper">
-      <div class="video-box">
-        <video id="video" autoplay playsinline></video>
-        <div class="countdown" id="countdown"></div>
-      </div>
+  <div class="video-box">
+    <video id="video" autoplay playsinline></video>
+    <div class="countdown" id="countdown"></div>
+    <button class="strip-toggle" id="stripToggle" aria-label="Toggle live strip">🎞️</button>
 
-      <!-- dynamic mini strip -->
-      <div class="live-strip" id="liveStrip"></div>
-    </div>
+  </div>
+
+  <!-- live strip container (starts invisible) -->
+<div class="live-strip hidden-strip" id="liveStrip"></div>
+</div>
+
 
     <button id="startBtn">Start Capturing</button>
   </div>
@@ -40,3 +43,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
