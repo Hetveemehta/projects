@@ -39,6 +39,9 @@ await new Promise(r => setTimeout(r, 1500)); // show it for 1s
         await new Promise(r => setTimeout(r, 700));
       }
       countdownEl.textContent = "";
+if (i === 0) {
+  document.getElementById("liveStrip")?.classList.remove("hidden-strip");
+}
 
       ctx.save();
       ctx.scale(-1, 1);
@@ -170,5 +173,14 @@ if (bottomInput && applyBottomText) {
       editorStrip.dataset.bottomText = "INDIGO PHOTOBOOTH 🦋"; // default
       editorStrip.classList.add("bottom-design");
     }
+  });
+}
+const removeBottomText = document.getElementById("removeBottomText");
+if (removeBottomText) {
+  removeBottomText.addEventListener("click", () => {
+    const strip = document.getElementById("editorStrip");
+    strip.removeAttribute("data-bottom-text");
+    strip.classList.remove("bottom-design");
+    document.getElementById("bottomTextInput").value = ""; // clear input box too
   });
 }
